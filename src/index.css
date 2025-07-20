@@ -1,0 +1,42 @@
+body{
+  margin: 0px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1{
+  font-size: 6em;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+}
+
+h2{
+  font-size: 3em;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 1200px) {
+  body{
+    overflow: visible;
+    height: auto;
+    margin-bottom: 100px;
+  }
+}

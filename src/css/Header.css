@@ -1,0 +1,64 @@
+header {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100px;
+    max-height: 150px;
+}
+
+.date-container{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.day-night-toggle{
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    background-color: rgba(255, 255, 255, 0.153);
+    border-radius: 50px;
+    padding: 7px;
+}
+
+.toggle-icon{
+    height: 19px;
+    padding: 5px;
+    border: 2px solid #fff;
+    border-radius: 50px;
+}
+
+.toggle-active{
+    background-color: #fff;
+}
+
+@media (max-width: 1200px) {
+    header{
+        font-size: 0.8em;
+        padding: 20px 0px;
+    }
+
+    .day-night-toggle{
+        display: none;
+    }
+
+    header input {
+        width: 150px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    header{
+        display: flex;
+        flex-direction: column-reverse;
+        font-size: 1em;
+    }
+
+    header input{
+        width: 60%;
+    }
+}

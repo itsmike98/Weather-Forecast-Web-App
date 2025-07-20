@@ -1,0 +1,53 @@
+.daily-forecast {
+    display: flex;
+    flex-direction: column;
+    grid-column-start: 3;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 30px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.daily-forecast ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1; /* ahora sí ocupa lo que queda */
+}
+
+
+
+.daily-forecast li{
+    border-top: 2px solid #ffffff34;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 20px;
+    align-items: center;
+    padding-top: 10px;
+    height: 100%;
+}
+
+.daily-forecast li span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.daily-forecast li img{
+    height: 50px;
+}
+
+@media (max-width: 1200px) {
+    .daily-forecast{
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 4;
+    }
+}
