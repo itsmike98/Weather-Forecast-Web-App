@@ -27,7 +27,7 @@ export default function WeatherInfo({ cityData, nocheDia }) {
                 </div>
 
                 <div className="humidity-container">
-                    <span><img src="Weather-icons/Drop.svg" alt="Drop-icon" />Humid</span>
+                    <span><img src="Weather-icons/Drop.svg" alt="Drop-icon" />Humedad</span>
                     {/* Humedad de la ciudad indicada */}
                     {cityData ? <h2>{cityData.main.humidity}<span className="percentage">%</span></h2> : <p>Cargando...</p>}
                 </div>
