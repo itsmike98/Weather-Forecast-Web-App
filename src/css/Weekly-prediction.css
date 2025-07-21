@@ -48,4 +48,9 @@
     overflow: visible;
 }
 
-/* 31, 29, 28, 26, 25, 25, 29, 29 */
+@media (max-width: 600px) {
+    .chart-container{
+        width: 100%;
+        margin-left: 0 !important;
+    }
+}

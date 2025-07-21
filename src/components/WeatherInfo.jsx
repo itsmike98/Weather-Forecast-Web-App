@@ -12,17 +12,19 @@ export default function WeatherInfo({ cityData, nocheDia }) {
                     {cityData ? <span>{cityData.name}, {cityData.sys.country}</span> : <p>Cargando...</p>}
                 </div>
 
-                {/* Descripcion del tiempo con la primera letra mayus */}
-                {cityData ? (
-                    <h2 className="prediction">
-                        {cityData.weather[0].description.charAt(0).toUpperCase() + cityData.weather[0].description.slice(1)}
-                    </h2>
-                ) : (
-                    <p>Cargando...</p>
-                )}
+                <div className="main-info-container">
+                    {/* Descripcion del tiempo con la primera letra mayus */}
+                    {cityData ? (
+                        <h2 className="prediction">
+                            {cityData.weather[0].description.charAt(0).toUpperCase() + cityData.weather[0].description.slice(1)}
+                        </h2>
+                    ) : (
+                        <p>Cargando...</p>
+                    )}
 
-                {/* Temperatura de la ciudad indicada */}
-                {cityData ? <h1>{Math.round(cityData.main.temp)} °C</h1> : <p>Cargando...</p>}
+                    {/* Temperatura de la ciudad indicada */}
+                    {cityData ? <h1>{Math.round(cityData.main.temp)}°C</h1> : <p>Cargando...</p>}
+                </div>
 
                 <div className="humidity-container">
                     <span><img src="Weather-icons/Drop.svg" alt="Drop-icon" />Humid</span>

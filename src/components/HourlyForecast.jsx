@@ -266,7 +266,6 @@ useEffect(() => {
 
         iconsList.unshift("");
         iconsList.push("");
-        console.log("Esto es icons list", iconsList);
         setHourIcons(iconsList);
       })
       .catch(function (error) {

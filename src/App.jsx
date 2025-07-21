@@ -19,6 +19,10 @@ function App() {
   const [nocheDia, setNocheDia] = useState("");
   //Icono para la info actual
   const [icon, setIcon] = useState();
+  //Estado para cuando se introduce una ciudad desconocida 
+  const [cityNotFound, setCityNotFound] = useState(false);
+  const [showError, setShowError] = useState(false);
+
 
   // Get weather info
   useEffect(() => {
@@ -28,7 +32,7 @@ function App() {
         setIcon(response.data.weather[0].icon);
       })
       .catch(function (error) {
-
+        setCityNotFound(true);
         console.log("Ha sucedido un error" + error);
       });
   }, [city]);
@@ -44,17 +48,31 @@ function App() {
     }
   }, [cityData]);
 
+  //Ocultar a los 2 segundos el mensaje de error
+  useEffect(() => {
+    if (cityNotFound) {
+      const timer = setTimeout(() => setCityNotFound(false), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [cityNotFound]);
+
   return (
     <>
       <div className='grid-container'>
-        <Header setCity={setCity} nocheDia={nocheDia}/>
-        <WeatherInfo cityData={cityData}/>
+        <Header setCity={setCity} nocheDia={nocheDia} />
+        <WeatherInfo cityData={cityData} />
         <div className='weather-icon-container'>
           <img src={getWeatherIcon(nocheDia, icon)} alt="weather-icon" />
         </div>
-        <DailyForecast city={city} apiKey={apiKey} nocheDia={nocheDia}/>
-        <HourlyForecast city={city} apiKey={apiKey}/>
+        <DailyForecast city={city} apiKey={apiKey} nocheDia={nocheDia} />
+        <HourlyForecast city={city} apiKey={apiKey} />
       </div>
+      <span className='author-credit'>Página hecha por Miguel Gutiérrez</span>
+      <div className={`error-message ${cityNotFound ? "show" : ""}`}>
+  <img src="Weather-icons/Search.svg" alt="search-icon" />
+  <span>No se encuentra la ciudad introducida.</span>
+</div>
+
     </>
   )
 }

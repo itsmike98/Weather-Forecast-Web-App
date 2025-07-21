@@ -14,7 +14,6 @@ export default function DailyForecast({ city, apiKey, nocheDia }) {
 
         axios.get(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&units=metric&cnt=6&appid=${apiKey}`)
             .then(function (response) {
-                console.log(response.data);
                 setApiCity(response.data.city.name);
                 setDailyForecast(response.data.list);
             })
@@ -22,14 +21,6 @@ export default function DailyForecast({ city, apiKey, nocheDia }) {
                 console.log("Ha habido un error con la llamada en daily forecast: " + error);
             });
     }, [city, apiKey]);
-
-    useEffect(() => {
-        if (dailyForecast.length > 0) {
-            console.log("Este es el print", dailyForecast[0]);
-        }
-    }, [dailyForecast]);
-
-
 
     return (
         <>

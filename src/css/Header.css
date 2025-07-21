@@ -56,9 +56,21 @@ header {
         display: flex;
         flex-direction: column-reverse;
         font-size: 1em;
+        margin-bottom: 30px;
     }
 
     header input{
         width: 60%;
+    }
+
+    .date-container{
+        gap: 30px;
+        font-size: 0.8em;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }

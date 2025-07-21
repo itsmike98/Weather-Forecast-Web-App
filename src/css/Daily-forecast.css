@@ -51,3 +51,11 @@
         grid-row-start: 4;
     }
 }
+
+@media (max-width: 600px) {
+    .daily-forecast{
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin-top: 80px;
+    }
+}
