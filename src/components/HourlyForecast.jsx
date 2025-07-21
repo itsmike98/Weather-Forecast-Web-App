@@ -265,7 +265,7 @@ useEffect(() => {
         {
             label: 'Ventas',
             data: degrees,
-            borderColor: 'rgba(75,192,192,1)',
+            borderColor: 'rgba(255, 102, 0, 1)',
             tension: 0.4,
             images: hourIcons,
         },

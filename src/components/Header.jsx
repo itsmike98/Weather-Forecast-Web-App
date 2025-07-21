@@ -31,19 +31,6 @@ export default function Header({ setCity, nocheDia }) {
                 <form onSubmit={handleForm}>
                     <input type="text" id="city-finder" name="city-finder" placeholder="Find your city" />
                 </form>
-                <div className="day-night-toggle">
-                    <img
-                        className={nocheDia === "day" ? "toggle-icon toggle-active" : "toggle-icon"}
-                        src="Weather-icons/day-night/Sun.svg"
-                        alt="sun-icon"
-                    />
-                    <img
-                        className={nocheDia === "night" ? "toggle-icon toggle-active" : "toggle-icon"}
-                        src="Weather-icons/day-night/Moon.svg"
-                        alt="moon-icon"
-                    />
-
-                </div>
                 <div className="date-container">
                     <span>{time}</span>
                     <span>{dayNames[day]} | {dateToString}</span>
