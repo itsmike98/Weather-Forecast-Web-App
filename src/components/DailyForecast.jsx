@@ -44,7 +44,7 @@ export default function DailyForecast({ city, apiKey, nocheDia }) {
                                     <span>{weekDays[dayIndex]}</span>
                                     <span>
                                         <img
-                                            src={getWeatherIcon(nocheDia, day.weather[0].icon)}
+                                            src={getWeatherIcon("day", day.weather[0].icon)}
                                             alt="weather-icon"
                                         />
                                         {Math.round(day.temp.day)}°

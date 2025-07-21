@@ -1,6 +1,7 @@
 import "../css/Weather-info.css";
+import { getWeatherIcon } from "../utils/getWeatherIcon";
 
-export default function WeatherInfo({ cityData }) {
+export default function WeatherInfo({ cityData, nocheDia }) {
 
     return (
         <>
