@@ -42,12 +42,6 @@ function App() {
     }
   }, [cityData]);
 
-  useEffect(() => {
-    if(nocheDia){
-      console.log(nocheDia);
-    }
-  },[nocheDia]);
-
   return (
     <>
       <div className='grid-container'>
@@ -56,7 +50,7 @@ function App() {
         <div className='weather-icon-container'>
           <img src="Weather-icons/Sun.svg" alt="weather-icon" />
         </div>
-        <DailyForecast />
+        <DailyForecast city={city} apiKey={apiKey} nocheDia={nocheDia}/>
         <HourlyForecast city={city} apiKey={apiKey} />
       </div>
     </>
