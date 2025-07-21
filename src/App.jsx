@@ -53,7 +53,7 @@ function App() {
           <img src={getWeatherIcon(nocheDia, icon)} alt="weather-icon" />
         </div>
         <DailyForecast city={city} apiKey={apiKey} nocheDia={nocheDia}/>
-        <HourlyForecast city={city} apiKey={apiKey} />
+        <HourlyForecast city={city} apiKey={apiKey}/>
       </div>
     </>
   )

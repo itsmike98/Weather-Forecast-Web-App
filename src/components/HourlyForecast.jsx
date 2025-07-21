@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import "../css/Weekly-prediction.css";
 import annotationPlugin from 'chartjs-plugin-annotation';
+import { getWeatherIcon } from "../utils/getWeatherIcon";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -18,26 +19,35 @@ import {
 
 
 export default function HourlyForecast({city, apiKey}) {
-    // Horas para la prevision de horas
+// Horas para la prevision de horas
 const [hourLabels, setHourLabels] = useState([]);
 // Grados por horas para la prevision de horas
 const [degrees, setDegrees] = useState([]);
+// Iconos de cada hora
+const [hourIcons, setHourIcons] = useState([]);
+
 
 //Plugin de chartJS para poner los iconos en la X
  const xScaleImage = {
     id: 'xScaleImage',
     afterDatasetsDraw(chart, args, plugin) {
-        const { ctx, data, chartArea: { bottom }, scales: { x } } = chart;
-        ctx.save();
+    const { ctx, chartArea: { bottom }, scales: { x } } = chart;
+    ctx.save();
 
-        data.datasets[0].images.forEach((image, index) => {
-            const label = new Image();
-            label.src = image;
-            const width = 30;
-            const height = 30;
-            ctx.drawImage(label, x.getPixelForValue(index) - (width / 2), x.top - 40, height, width);
-        })
-    }
+    const dataset = chart.config._config.data.datasets[0];
+    const images = dataset?.images;
+
+    if (!images || !Array.isArray(images)) return; // Previene el error
+
+    images.forEach((image, index) => {
+        const label = new Image();
+        label.src = image;
+        const width = 30;
+        const height = 30;
+        ctx.drawImage(label, x.getPixelForValue(index) - (width / 2), x.top - 40, height, width);
+    });
+}
+
 }
 
 // Registro del chart de linea con el plugin creado.
@@ -206,10 +216,12 @@ ChartJS.register(
 
 // peticion del forecast por horas
 useEffect(() => {
+
     axios.get(`https://pro.openweathermap.org/data/2.5/forecast/hourly?q=${city}&units=metric&appid=${apiKey}`)
       .then(function (response) {
         const hoursList = [];
         const degreesList = [];
+        const iconsList = [];
 
         //recorremos cada tres horas y guardamos en array
         for (let i = 0; i<=23; i++){
@@ -224,19 +236,23 @@ useEffect(() => {
                 const degree = Math.round(response.data.list[i].main.temp);
                 hoursList.push(formatHour);
                 degreesList.push(degree);
+                iconsList.push(getWeatherIcon("", response.data.list[i].weather[0].icon));
             }
         }
 
         //Añadimos espacios al principio y final y guardamos los arrays
         hoursList.unshift("");
         hoursList.push("");
-
-        console.log(hoursList);
         setHourLabels(hoursList);
 
         degreesList.unshift(null);
         degreesList.push(null);
         setDegrees(degreesList);
+
+        iconsList.unshift("");
+        iconsList.push("");
+        console.log("Esto es icons list", iconsList);
+        setHourIcons(iconsList);
       })
       .catch(function (error) {
         console.log("Ha sucedido un error" + error);
@@ -251,7 +267,7 @@ useEffect(() => {
             data: degrees,
             borderColor: 'rgba(75,192,192,1)',
             tension: 0.4,
-            images: ['', 'Weather-icons/Sun.svg', 'Weather-icons/Sun.svg', 'Weather-icons/Sun.svg', 'Weather-icons/Sun.svg', 'Weather-icons/Sun.svg', 'Weather-icons/Sun.svg', 'Weather-icons/Sun.svg', 'Weather-icons/Sun.svg', '',],
+            images: hourIcons,
         },
     ],
 }  
