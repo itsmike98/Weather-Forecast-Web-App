@@ -60,6 +60,21 @@ ChartJS.register(
     xScaleImage,
 );
 
+function minorDegree(degreesList) {
+    // Filtra valores inválidos como null
+    const filtered = degreesList.filter(val => typeof val === 'number');
+
+    if (filtered.length === 0) return 0; // Manejo de caso vacío
+
+    let minorNum = filtered[0];
+    for (let i = 1; i < filtered.length; i++) {
+        if (filtered[i] < minorNum) {
+            minorNum = filtered[i];
+        }
+    }
+    return minorNum - 10; // Opcional: restas 2 para dar margen en la escala Y
+}
+
  const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -205,7 +220,7 @@ ChartJS.register(
             }
         },
         y: {
-            min: 19,
+            min: minorDegree(degrees),
             display: false,
             grid: { display: false },
             offset: 100,
@@ -257,7 +272,7 @@ useEffect(() => {
       .catch(function (error) {
         console.log("Ha sucedido un error" + error);
       });
-  }, []);
+  }, [city, apiKey]);
 
  const data = {
     labels: hourLabels,
