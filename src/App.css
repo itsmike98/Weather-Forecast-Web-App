@@ -112,6 +112,7 @@ input:hover {
         grid-template-columns: repeat(2, 1fr);
         height: auto;
         row-gap: 50px;
+        margin-bottom: 400px;
     }
 }
 
